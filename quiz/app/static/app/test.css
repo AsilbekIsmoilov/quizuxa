@@ -1,0 +1,182 @@
+ body {
+            background: #f8f9fa;
+        }
+
+        .card {
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+            transition: 0.2s ease-in-out;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
+        h4 {
+            margin: 0;
+        }
+
+        .btn-sm {
+            margin-left: 5px;
+        }
+
+         body {
+            margin: 0;
+            background-color: #f4f6fa;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timer {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .header-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-title h5 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .header-title small {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .photo-box {
+            text-align: center;
+        }
+
+        .photo-box img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .photo-box div {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .question-nav button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+            background: white;
+            color: #007bff;
+            font-weight: bold;
+            cursor: default;
+        }
+
+        .question-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .form-check {
+            margin-bottom: 8px;
+        }
+
+        .form-check input[type="radio"] {
+            appearance: none;
+            border: 2px solid #007bff;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            position: relative;
+            top: 4px;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .form-check input[type="radio"]:checked {
+            background-color: #007bff;
+        }
+
+        .form-check label {
+            cursor: pointer;
+        }
+
+        .submit-box {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .finish-btn {
+            background-color: #099129;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .finish-btn:hover {
+            background-color: #218838;
+        }
+
+.answer-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid #ddd;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #fdfdfd;
+    line-height: 1.5;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.answer-option:hover {
+    background-color: #f0f8ff;
+}
+
+.answer-option input[type="radio"] {
+    margin-top: 4px;
+    transform: scale(1.1);
+    flex-shrink: 0;
+}

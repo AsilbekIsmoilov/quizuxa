@@ -1,0 +1,25 @@
+
+    body {
+            background: #f8f9fa;
+        }
+
+        .card {
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+            transition: 0.2s ease-in-out;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
+        h4 {
+            margin: 0;
+        }
+
+        .btn-sm {
+            margin-left: 5px;
+        }

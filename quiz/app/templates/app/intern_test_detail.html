@@ -1,0 +1,87 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали теста</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'app/test_detail.css' %}">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4>Результаты теста стажёра: {{ result.full_name }}</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Пользователь</th>
+                            <th>ФИО</th>
+                            <th>Правильные ответы</th>
+                            <th>Ошибки</th>
+                            <th>Из</th>
+                            <th>Время</th>
+                            <th>Дата</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ result.full_name }}</td>
+                            <td>{{ result.score }}</td>
+                            <td>{{ wrong_answers }}</td>
+                            <td>{{ total_questions }}</td>
+                            <td>{{ result.duration_minutes }}</td>
+                            <td>{{ result.created_at|date:"Y-m-d H:i" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{{ referer }}" class="btn btn-secondary">Назад</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            {% for question in questions %}
+                <div class="question-box">
+                    <p class="question-text">{{ forloop.counter }}. {{ question.text }}</p>
+
+                    {% for answer in question.randomized_answers %}
+                        {% with is_user_answer=user_answers|get_item:question.id %}
+                            {% if answer.id == is_user_answer and answer.is_correct %}
+                                <div class="answer-option correct-user">
+                                    <input type="radio" checked disabled>
+                                    {{ answer.text }} ✅
+                                </div>
+                            {% elif answer.id == is_user_answer and not answer.is_correct %}
+                                <div class="answer-option incorrect-user">
+                                    <input type="radio" checked disabled>
+                                    {{ answer.text }} ❌
+                                </div>
+                            {% elif answer.is_correct %}
+                                <div class="answer-option correct">
+                                    <input type="radio" disabled>
+                                    {{ answer.text }} ✔
+                                </div>
+                            {% else %}
+                                <div class="answer-option">
+                                    <input type="radio" disabled>
+                                    {{ answer.text }}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

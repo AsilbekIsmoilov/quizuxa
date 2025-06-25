@@ -1,0 +1,81 @@
+{% load static %}
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app/train.css' %}">
+    <style>
+        .clickable-row:hover {
+            background-color: #f0f8ff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Последние тесты</h4>
+            <div>
+                <a href="{% url 'app:create_intern' %}" class="btn btn-light btn-sm">Добавить стажера</a>
+                <a href="{% url 'app:intern_detail' %}" class="btn btn-light btn-sm">Подробности</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle table-bordered">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Пользователь</th>
+                            <th>ФИО стажера</th>
+                            <th>Кол-во правильных ответов</th>
+                            <th>Время</th>
+                            <th>Дата</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for intern in interns %}
+                            {% with results|dict_get:intern.pk as result %}
+                                {% if result %}
+                                    <tr class="clickable-row" data-href="{% url 'app:intern_test_detail' result.id %}">
+                                        <td>{{ intern.user.username }}</td>
+                                        <td>{{ result.full_name }}</td>
+                                        <td>{{ result.score }} пр.отв</td>
+                                        <td>{{ result.duration_minutes }}</td>
+                                        <td>{{ result.date|date:"Y-m-d H:i" }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'accounts:logout' %}" class="btn btn-danger">Выйти</a>
+        </div>
+    </div>
+</div>
+
+<!-- JS for row click -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const rows = document.querySelectorAll('.clickable-row');
+        rows.forEach(row => {
+            row.addEventListener('click', function () {
+                const href = this.dataset.href;
+                if (href) {
+                    window.location.href = href;
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
